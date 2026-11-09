@@ -1,0 +1,22 @@
+# Render Blueprint for Tab — one web service (API + built React app) and one Postgres database.
+# Docs: https://render.com/docs/blueprint-spec
+# Node version comes from .node-version (22.23.4). Migrations run automatically when the server starts.
+services:
+  - type: web
+    name: tab-bill-splitter
+    runtime: node
+    plan: free
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: tab-db
+          property: connectionString
+
+databases:
+  - name: tab-db
+    plan: free
+    databaseName: tab
+    user: tab
