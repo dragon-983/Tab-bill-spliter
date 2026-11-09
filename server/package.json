@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node --env-file-if-exists=../.env --watch src/index.js",
-    "start": "node --env-file-if-exists=../.env src/index.js",
+    "dev": "node init && node --env-file-if-exists=../.env --watch src/index.js",
+    "start": "node init && node --env-file-if-exists=../.env src/index.js",
     "migrate": "node --env-file-if-exists=../.env scripts/migrate.js",
     "test": "node --env-file-if-exists=../.env --test --test-concurrency=1 \"test/**/*.test.js\""
   },
